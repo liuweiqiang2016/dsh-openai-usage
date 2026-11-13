@@ -8,6 +8,12 @@ View OpenAI API usage and costs in DeepSeek Harness, with Chinese and English in
 - Explore usage by model or project and view daily costs.
 - Filter by this month, the last 7 days or the last 30 days.
 
+## Preview
+
+![OpenAI Usage interface with mock data](https://raw.githubusercontent.com/liuweiqiang2016/dsh-openai-usage/main/docs/screenshots/overview-en.png)
+
+*The screenshot uses mock data.*
+
 ## Install
 
 1. In DSH, open **Plugins → Add plugin**.

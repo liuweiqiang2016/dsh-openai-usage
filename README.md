@@ -8,6 +8,12 @@
 - 按模型、项目查看用量，查看每日费用。
 - 支持本月、近 7 天、近 30 天筛选。
 
+## 效果预览
+
+![OpenAI 用量插件界面（模拟数据）](https://raw.githubusercontent.com/liuweiqiang2016/dsh-openai-usage/main/docs/screenshots/overview-zh.png)
+
+*截图使用模拟数据。*
+
 ## 安装
 
 1. 在 DSH 中打开**插件 → 添加插件**。
