@@ -1,10 +1,32 @@
 # OpenAI 用量 · Harness 插件
 
-[English](README.md) | 简体中文
+简体中文 | [English](README.en.md)
 
 在 DeepSeek Harness 的 **设置 → OpenAI 用量** 中查看官方 OpenAI API 账户的用量、费用和组织月度消费上限。
 
 页面跟随 Harness 的界面语言，支持中文和英文（英文名称为 **OpenAI Usage**）。侧栏名称、页面文案、错误提示与数字／日期格式随语言切换更新，日期统计边界仍为 UTC。
+
+## 安装插件（推荐）
+
+直接在 DeepSeek Harness 中添加本仓库，无需先下载安装包，也无需打开终端。
+
+1. 打开 DSH 的**插件**页面，点击**添加插件**。
+2. 在输入框中粘贴以下 GitHub 仓库地址：
+
+   ```text
+   https://github.com/liuweiqiang2016/dsh-openai-usage
+   ```
+
+3. 点击**安装**，等待完成；如 DSH 提示启用插件或重新加载，按界面提示操作。
+4. 打开**设置 → OpenAI 用量**，按下方说明配置 **Admin API Key**，即可查询。
+
+请填写上面的仓库地址，不是 README 页面地址。本项目未发布到 npm，不要只填写包名。安装时需要能够访问 GitHub 及依赖下载源。
+
+仓库中已包含 Host 和 Client 的构建文件。兼容范围为 Harness `>=0.2.2-rc.1 <0.3.0`，以 `0.2.2-rc.1` 接口为开发与测试基线；可在“关于 DeepSeek Harness”中查看版本。
+
+仓库名为 `dsh-openai-usage`；为兼容现有安装，包名和内部标识保留 `dsh-openai-account`，界面名称为 **OpenAI 用量 / OpenAI Usage**。
+
+需要卸载时，在 DSH 的插件管理页面找到本插件并卸载。卸载不会删除 Harness 凭据服务中已保存的管理员密钥；如不再使用，可在凭据管理中清除对应引用，并在 OpenAI 平台撤销该密钥。
 
 ## 功能和统计口径
 
@@ -18,34 +40,6 @@
 模型用量取自 `/v1/organization/usage/completions`；费用取自 `/v1/organization/costs`，可能包含其他产品的收费项目。输入 token 已包含缓存 token，两者不相加。费用可能延迟或调整，不等同于最终发票、已付款金额、充值记录或账户余额。
 
 本插件不读取聊天内容，不估算每个对话的费用，不调用模型。数据仅在打开面板、切换已应用筛选、保存密钥或手动刷新时查询，不在后台持续轮询。
-
-## 安装到桌面版
-
-从 [GitHub Releases](https://github.com/liuweiqiang2016/dsh-openai-usage/releases/latest) 下载 `.tgz` 安装包（不要下载 Source code）。本项目不发布到 npm。仓库名为 `dsh-openai-usage`；为兼容已安装版本，安装包名和内部标识保留 `dsh-openai-account`。
-
-以官方 npm 发布的 Harness **0.2.2-rc.1** 接口为开发与本地测试基线；包声明范围为 `>=0.2.2-rc.1 <0.3.0`。其他版本及完整 Electron 桌面中的实际加载仍需验证。可在桌面菜单的“关于 DeepSeek Harness”查看版本。
-
-1. 先启动一次桌面版，让它初始化 `desktop` profile。
-2. 找到桌面版附带的 `dsh` 命令。应用菜单“管理 dsh 命令…”可以显示并配置该命令；未配置 PATH 时，也可以直接调用安装目录下 `resources/runtime/cli/bin/dsh.cmd` 的完整路径。
-3. **从系统托盘选择退出**，确保桌面版完全退出。仅关闭窗口通常仍在后台运行。
-4. 在 PowerShell 中进入安装包所在目录，使用桌面版自己的 `dsh` 执行：
-
-```powershell
-dsh --version
-dsh plugin --profile desktop add './dsh-openai-account-0.1.0.tgz'
-```
-
-5. 重新打开桌面版，进入 **设置 → OpenAI 用量**。
-
-请使用桌面版自带的命令维护 `desktop` profile，避免用另一套 npm CLI 操作桌面版运行时。安装本地 tarball 可能需要联网解析依赖。包内已经包含构建产物，安装后无需编译。
-
-卸载时同样完全退出桌面版，再执行：
-
-```powershell
-dsh plugin --profile desktop remove dsh-openai-account
-```
-
-卸载不会删除 Harness 凭据服务中已保存的管理员密钥。如不再使用，可在 Harness 凭据管理中清除对应引用，并在 OpenAI 平台撤销该密钥。
 
 ## 配置 Admin API Key
 
